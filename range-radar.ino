@@ -9,7 +9,7 @@ int distance;
 // Servo variables
 Servo myservo;
 int pos = 0;
-int degree = 1;
+int degree = 10;
 
 void setup() {
   pinMode(TRIGGER, OUTPUT);
@@ -20,8 +20,7 @@ void setup() {
 
   
 }
-
-void sweep(){
+int sweep(){
   if(pos == 180){
     degree *= -1;
   } else if(pos == 0){
@@ -31,6 +30,7 @@ void sweep(){
   
   myservo.write(pos);
   //delay(200);
+  Serial.print(pos);
 }
 
 void aaa(){
@@ -53,12 +53,14 @@ void read_distance(){
     // Calculating the distance
     distance= duration * 0.034/2;
     // Prints the distance on the Serial Monitor
-    Serial.print("Distance: ");
     Serial.println(distance);
 }
 
 void loop() {
-  //read_distance();
-  //sweep();
+  sweep();
+  Serial.print(";");
+  read_distance();
+  delay(20);
+  
   //aaa();
 }
