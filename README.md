@@ -4,6 +4,10 @@ A aruino based radar syster for fun
 ## What is this about ?
 Throughout the media we see cars and robots using expensive laser-based sensor to map the environment, we then tried to roll-out our own  version with items that are common to any maker's toolbox.
 
+## Output
+Sample output, scanned my room.
+![Output](https://raw.githubusercontent.com/hydrocat/range-radar/master/visao_2d/sketch_171128a/drawing!.png)
+
 ## Materials
 * Hardware
   * Arduino UNO ( or compatible )
@@ -22,8 +26,8 @@ Throughout the media we see cars and robots using expensive laser-based sensor t
 
 ## Code
 1. Plug in the arduino in the computer.
-2. Program the arduino with the code in [range-radar.ino]()
-3. Open up [this]() processing sketch.
+2. Program the arduino with the code in [range-radar.ino](https://github.com/hydrocat/range-radar/blob/master/range-radar.ino)
+3. Open up [this](https://github.com/hydrocat/range-radar/blob/master/visao_2d/sketch_171128a/sketch_171128a.pde) processing sketch.
 4. Hit "run" and watch as the picture is formed
 
 ## Notice
