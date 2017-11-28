@@ -6,7 +6,7 @@ Throughout the media we see cars and robots using expensive laser-based sensor t
 
 ## Output
 Sample output, scanned my room.
-![Output](https://raw.githubusercontent.com/hydrocat/range-radar/master/visao_2d/sketch_171128a/drawing!.png)
+	![Output](https://raw.githubusercontent.com/hydrocat/range-radar/master/visao_2d/sketch_171128a/drawing!.png)
 
 ## Materials
 * Hardware
