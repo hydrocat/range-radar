@@ -1,47 +1,35 @@
 #include <Servo.h>
 
+#define separator ";"
+#define step 2
+#define maxAngle 180
+#define readDelay 100
+
 // Ultrasonic variables
 const int TRIGGER = 12;
 const int ECHO = 11;
 long duration;
-int distance;
 
 // Servo variables
-Servo myservo;
-int pos = 0;
-int degree = 10;
+Servo myservoa; //holds the sensor, pitch
+Servo myservob; // yaw
+
 
 void setup() {
   pinMode(TRIGGER, OUTPUT);
   pinMode(ECHO, INPUT);
   Serial.begin(9600);
   
-  myservo.attach(9);
+  myservoa.attach(9);
+  myservob.attach(10);
 
   
 }
-int sweep(){
-  if(pos == 180){
-    degree *= -1;
-  } else if(pos == 0){
-    degree = !degree;
-  }
-  pos += degree;
-  
-  myservo.write(pos);
-  //delay(200);
-  Serial.print(pos);
-}
 
-void aaa(){
-  myservo.write(0);
-  delay(500);
-  myservo.write(180);
-  delay(500);
-}
-
-void read_distance(){
-  // Clears the TRIGGER
+float rd(){
+    delay(50);
+    float distance;
+    // Clears the TRIGGER
     digitalWrite(TRIGGER, LOW);
     delayMicroseconds(2);
     // Sets the TRIGGER on HIGH state for 10 micro seconds
@@ -51,16 +39,41 @@ void read_distance(){
     // Reads the ECHO, returns the sound wave travel time in microseconds
     duration = pulseIn(ECHO, HIGH);
     // Calculating the distance
-    distance= duration * 0.034/2;
+    distance= duration * 0.034/2.0;
     // Prints the distance on the Serial Monitor
-    Serial.println(distance);
+    return distance;
+}
+
+float read_distance(){
+  float r = 0;
+  for( int x = 0; x< 10; x++){ r += rd(); }
+    return r/10.0;
+}
+
+void makeReading(){
+      for(int yaw = 0; yaw < 180; yaw += step){
+      myservob.write(yaw);
+      delay(80);
+      for(int pitch = 0; pitch < 180; pitch += step) {
+        myservoa.write(pitch);
+        if( pitch == 0){
+          delay(500);
+        }
+        Serial.print(pitch);
+        Serial.print(separator);
+        Serial.print(yaw);
+        Serial.print(separator);
+        Serial.print(read_distance());
+        Serial.println();
+        delay(readDelay);
+      }
+    }
+}
+
+int sweep(){
+  makeReading();
 }
 
 void loop() {
   sweep();
-  Serial.print(";");
-  read_distance();
-  delay(20);
-  
-  //aaa();
 }
