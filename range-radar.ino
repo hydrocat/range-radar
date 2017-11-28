@@ -1,7 +1,7 @@
 #include <Servo.h>
 
 #define separator ";"
-#define step 2
+#define step 10
 #define maxAngle 180
 #define readDelay 100
 

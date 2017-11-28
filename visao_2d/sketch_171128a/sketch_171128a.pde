@@ -1,6 +1,6 @@
 import processing.serial.*;
 Serial serial;
-float stepAngle = 2;
+float stepAngle = 10;
 float step = 180/stepAngle;
 
 ArrayList<float[]> points = new ArrayList();
